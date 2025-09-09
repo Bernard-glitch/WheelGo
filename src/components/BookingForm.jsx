@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const BookingForm = ({ onCreate, onUpdate, editBooking, showResults }) => {
     // ----------------------- State Initialization -----------------------
-    const initialFormState = {
+    const initialFormState = React.useMemo(() => ({
         name: "",
         vehicle: "",
         pickup: "",
@@ -12,7 +12,7 @@ const BookingForm = ({ onCreate, onUpdate, editBooking, showResults }) => {
         age: "26+",
         country: "United Kingdom",
         vehicleType: "car",
-    };
+    }), []);
 
     const [form, setForm] = useState(initialFormState);
 
@@ -23,7 +23,7 @@ const BookingForm = ({ onCreate, onUpdate, editBooking, showResults }) => {
         } else {
             setForm(initialFormState);
         }
-    }, [editBooking]);
+    }, [editBooking, initialFormState]);
 
     // ----------------------- Handle Input Change -----------------------
     const handleChange = (e) => {
